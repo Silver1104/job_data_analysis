@@ -5,7 +5,7 @@
 I tried discovering the most demanded skills for the top 3 most demanded software engineering roles in the United States. These insights could help users understand what skills they should focus on for maximum chances of getting hired.
 
 View the associated notebook here:  
-[top_demanded_skills_p1.ipynb](Project\top_demanded_skills_p1.ipynb)
+[top_demanded_skills_p1.ipynb](Project\project1\top_demanded_skills_p1.ipynb)
 
 ### Code snippet:
 
