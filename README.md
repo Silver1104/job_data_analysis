@@ -73,7 +73,7 @@ import ast
 After knowing the most, demanded skills across a specific role, it can be crucial to know exactly how much in demand each of the skills was per month, wehn hiring was done, as it can help understand the companies' vision.
 
 View the associated notebook here:  
-[skill_trend_over_year.ipynb](Project\project2\skill_trend_over_year.ipynb)
+[skill_trend_over_year.ipynb](Project/project2/skill_trend_over_year.ipynb)
 
 ### Code snippet:
 
@@ -126,4 +126,45 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import ast
 from adjustText import adjust_text
+```
+
+## Project 3. Comparing salary distributions
+
+Comparing the top data roles, that are in demand, based on their average yearly salary, as well as comparing them to their associated senior roles.
+
+View the associated notebook here:  
+[comapare_salary_dist.ipynb](Project/project3/compare_salary_dist.ipynb)
+
+### Code snippet:
+```python
+from matplotlib.ticker import FuncFormatter
+sns.boxplot(df_US_top3_roles, x='salary_year_avg', y='job_title_short')
+sns.set_style('ticks')
+plt.xlim(0,600000)
+plt.xlabel("Yearly Salary (USD)")
+plt.ylabel('')
+plt.title("Salary distribution of top data jobs and associated senior roles in the US")
+ax = plt.gca()
+ax.xaxis.set_major_formatter(FuncFormatter(lambda x,_: f"${int(x/1000)}K"))
+```
+### Results
+![Visualization of top skills for top AIML roles](Project/project3/output.png)
+
+### Insights
+
+#### 1. Highest median salary: Senior Data Scientist, followed by Senior Data Engineer.
+#### 2. Data Analyst roles have the lowest median salary among listed jobs.
+#### 3. Senior roles consistently pay more than their non-senior counterparts.
+#### 4. Data Scientist roles have higher variability in pay, with more high-end outliers.
+#### 5. Wide salary ranges indicate differing company budgets, locations, and skill specializations.
+#### 6. Very low parity between the median of roles and their senior roles. The lower end are mostly similar but the upper end of the salary clearly indicates how senior roles pay better. Base role otliers have a huge density for their associated senior roles
+
+### Libraries Used
+
+```python
+from datasets import load_dataset
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 ```
