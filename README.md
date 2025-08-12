@@ -96,7 +96,7 @@ ax.yaxis.set_major_formatter(PercentFormatter(decimals=0))
 plt.show()
 ```
 ### Results
-![Visualization of top skills for top AIML roles](Project/project2/output.png)
+![Visualization of skill trends in 2023](Project/project2/output.png)
 
 ### Insights
 
@@ -148,7 +148,7 @@ ax = plt.gca()
 ax.xaxis.set_major_formatter(FuncFormatter(lambda x,_: f"${int(x/1000)}K"))
 ```
 ### Results
-![Visualization of top skills for top AIML roles](Project/project3/output.png)
+![Visualization of salary distributions](Project/project3/output.png)
 
 ### Insights
 
@@ -167,4 +167,62 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
+```
+
+## Project 4. Optimal skills check for getting job
+
+Here, I compared skills that data analysts are required to possess based on the frequency of their appearance and how much salary they contribute towards.
+
+View the associated notebook here:  
+[optimize_skills.ipynb](Project/project4/optimize_skills.ipynb)
+
+### Code snippet:
+```python
+sns.scatterplot(
+    df_plot,
+    x = 'percentage',
+    y = 'median_salary',
+    hue = 'technology'
+)
+sns.despine()
+texts = []
+for i, txt in enumerate(df_DA_US_top.index):
+    texts.append(plt.text(df_plot['percentage'].iloc[i], df_plot['median_salary'].iloc[i], txt))
+adjust_text(texts, arrowprops=dict(arrowstyle='->', color='gray'))
+ax = plt.gca()
+ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y,_: f"${int(y/1000)}K"))
+ax.xaxis.set_major_formatter(PercentFormatter(decimals=0))
+plt.ylabel("Average yearly salary")
+plt.xlabel('Percentage of skills in data analysts')
+plt.show()
+```
+### Results
+![Visualization of frequency top DA skills against salary](Project/project4/output.png)
+
+### Insights
+
+#### 1. Observations
+- Highest salary skill: Python (~$98K) despite moderate demand (~16%).
+- SQL — highest demand (30%) with above-average salary ($91K).
+-  and Power BI — strong salaries (~$93K) but lower demand (10–16%).
+- Excel — very high demand (22%) but lower salary ($84K) compared to other tools.
+- Word & PowerPoint — low demand (5–11%) and lower salary range ($85–90K).
+- Programming skills (Python, SQL) generally have higher salaries than analyst tools (Excel, Word, PowerPoint).
+
+#### 2. Inference
+- Mastering programming + visualization tools leads to higher pay.
+- Some high-demand tools (like Excel) do not necessarily command high salaries.
+- Specialized skills with lower prevalence (Python, Tableau) can yield higher earnings.
+- Balancing both market demand and salary potential is key for skill development.
+
+### Libraries Used
+
+```python
+from datasets import load_dataset
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import ast
+from adjustText import adjust_text
+from matplotlib.ticker import PercentFormatter
 ```
