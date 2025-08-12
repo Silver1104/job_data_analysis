@@ -68,3 +68,62 @@ import matplotlib.pyplot as plt
 import ast
 ```
 
+## Project 2. Trends in skill demands for Data Analysts in the US over the year
+
+After knowing the most, demanded skills across a specific role, it can be crucial to know exactly how much in demand each of the skills was per month, wehn hiring was done, as it can help understand the companies' vision.
+
+View the associated notebook here:  
+[skill_trend_over_year.ipynb](Project\project2\skill_trend_over_year.ipynb)
+
+### Code snippet:
+
+```python
+from matplotlib.ticker import PercentFormatter
+sns.lineplot(df_DA_US_final, dashes=False)
+plt.legend().set_visible(False)
+sns.despine()
+texts = []
+for i in range(5):
+    texts.append(
+        plt.text(11, df_DA_US_final.iloc[-1, i], df_DA_US_final.columns[i])
+    )
+plt.title('Skill trend for data analysts in US in 2023')
+plt.xlabel('2023')
+plt.ylabel('Percentage of skill required in given job')
+adjust_text(texts, arrowprops=dict(arrowstyle='-', color='gray'))
+ax=plt.gca()
+ax.yaxis.set_major_formatter(PercentFormatter(decimals=0))
+plt.show()
+```
+### Results
+![Visualization of top skills for top AIML roles](Project/project2/output.png)
+
+### Insights
+
+#### 1. SQL is critical
+- consistently the top requirement for data analysts in the US.
+
+#### 2. Excel remains core 
+- stable for most of the year, but saw a late-year dip and rebound.
+
+#### 3. Visualization skills (Tableau) 
+- moderately valued, steady demand with small peaks.
+
+#### 4. Python demand is steady
+- essential but slightly less prioritized than SQL/Excel.
+
+#### 5. SAS demand is low
+- niche usage, possibly legacy system support.
+
+#### 6. Data analyst roles still heavily rely on traditional data tools (SQL, Excel) over newer programming-centric tools.
+
+### Libraries Used
+
+```python
+from datasets import load_dataset
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import ast
+from adjustText import adjust_text
+```
